@@ -94,7 +94,7 @@ app.get("/memory",requireAdminOrApiKey,(req,res)=>res.json({ok:true,memory:getMe
 app.use((req,res)=>res.status(404).json({ok:false,error:"not_found"}));
 let server = null;
 const isDirectRun = process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href;
-if(isDirectRun){
+if(isDirectRun || process.env.VORIXEN_FORCE_LISTEN === "true"){
   server=app.listen(config.port,config.host,()=>console.log(`VORIXEN running on ${config.host}:${config.port}`));
 }
 export { app, server };

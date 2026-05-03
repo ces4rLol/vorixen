@@ -31,6 +31,7 @@ const files=[
  "src/governance/legal-speech-lock.js",
  "src/pipeline/vorixen-pipeline.js",
  "src/server.js",
+ "start-vorixen.cjs",
  "scripts/check_production_env.js",
  "scripts/run-node-env.js",
  "scripts/self_audit.js",

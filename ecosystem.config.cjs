@@ -5,7 +5,7 @@ module.exports = {
     {
       name: "vorixen",
       cwd: __dirname,
-      script: "src/server.js",
+      script: "start-vorixen.cjs",
       instances: 1,
       exec_mode: "fork",
       watch: false,
@@ -16,6 +16,7 @@ module.exports = {
       merge_logs: true,
       env: {
         NODE_ENV: "production",
+        VORIXEN_FORCE_LISTEN: "true",
         HOST: "0.0.0.0",
         PORT: 3000
       }

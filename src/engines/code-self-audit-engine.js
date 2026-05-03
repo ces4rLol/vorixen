@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-const REQUIRED_FILES=["package.json",".nvmrc","DEPLOY_HOSTINGER.md","deploy/nginx-vorixen.conf","scripts/check_production_env.js","src/server.js","src/core/auth.js","src/core/auth-store.js","src/pipeline/vorixen-pipeline.js","src/engines/intent-engine.js","src/engines/analysis-engine.js","src/engines/legal-concept-engine.js","src/engines/comprehension-engine.js","src/engines/decision-engine.js","src/engines/response-engine.js","src/engines/legal-output-sufficiency-engine.js","src/knowledge/legal-topic-catalog.js","tests/run-all-tests.js","tests/run-tests.js","tests/auth-sqlite-tests.js","tests/check-syntax.js"];
+const REQUIRED_FILES=["package.json",".nvmrc","DEPLOY_HOSTINGER.md","deploy/nginx-vorixen.conf","scripts/check_production_env.js","src/server.js","start-vorixen.cjs","src/core/auth.js","src/core/auth-store.js","src/pipeline/vorixen-pipeline.js","src/engines/intent-engine.js","src/engines/analysis-engine.js","src/engines/legal-concept-engine.js","src/engines/comprehension-engine.js","src/engines/decision-engine.js","src/engines/response-engine.js","src/engines/legal-output-sufficiency-engine.js","src/knowledge/legal-topic-catalog.js","tests/run-all-tests.js","tests/run-tests.js","tests/auth-sqlite-tests.js","tests/check-syntax.js"];
 const PIPELINE_ORDER=["classifyIntent","detectOutputMode","analyzeInput","applyConceptOverride","buildLegalSpace","decide","enforceGovernor","assertExecutionPrecision","buildResponse"];
 
 export function isCodeSelfAuditRequest(message){
