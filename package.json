@@ -1,0 +1,27 @@
+{
+  "name": "vorixen-vnext12-required-ai-monitoring-release",
+  "version": "1.12.0",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node scripts/run-node-env.js test tests/run-all-tests.js",
+    "check": "node tests/check-syntax.js",
+    "pm2:start": "pm2 start ecosystem.config.cjs",
+    "deploy:pull": "bash scripts/deploy_pull.sh",
+    "prod:check": "node scripts/check_production_env.js",
+    "self-audit": "node scripts/self_audit.js",
+    "test:single": "node scripts/run-node-env.js test tests/run-tests.js",
+    "compat": "node scripts/run-node-env.js test tests/vnext-12-required-ai-monitoring-tests.js",
+    "ai:health": "node -e \"import('./src/ai/openai-monitor.js').then(m=>console.log(JSON.stringify(m.getOpenAIMetrics(),null,2)))\""
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "helmet": "^7.1.0",
+    "morgan": "^1.10.1"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}

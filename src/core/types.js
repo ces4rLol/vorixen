@@ -1,0 +1,4 @@
+export const QueryMode=Object.freeze({NORMATIVE_QUERY:"normative_query",CONCRETE_CASE:"concrete_case",LITIGATION:"litigation",FORMAT_TRANSFORM:"format_transform",NON_LEGAL:"non_legal"});
+export const OutputStatus=Object.freeze({BLOCKED:"blocked_by_governance",PROCEDURAL:"procedural_action_required",EXECUTION:"ready_for_legal_execution",INTAKE:"intake_required",NON_LEGAL:"non_legal_passthrough"});
+export const SpeechClass=Object.freeze({BLOCK:"Bloqueo jurídico operativo",PROCEDURAL:"Ejecutar actuación procesal obligatoria",EXECUTION:"Ejecutar consecuencia jurídica gobernante",INTAKE:"Completar requisito de entrada obligatorio",NON_LEGAL:"Clasificación no jurídica"});
+export const OutputMode=Object.freeze({STRUCTURED:"structured",FISCAL_AUDITOR_OPINION:"fiscal_auditor_opinion",LEGAL_CONCEPT:"legal_concept",LEGAL_CHARGE:"legal_charge",READY_TO_FILE:"ready_to_file"});

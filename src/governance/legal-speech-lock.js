@@ -1,0 +1,3 @@
+import { config } from "../core/config.js";
+const softLanguage=["podría","podria","sería recomendable","seria recomendable","se recomienda","conviene","resultaría prudente","resultaria prudente","sería útil","seria util","opción","opcion","alternativa","mejor estrategia","tal vez","quizá","quiza","considerar","evaluar como posibilidad"];
+export function assertLegalSpeechLock(text){if(!config.strictSpeechLock) return text; const normalized=String(text||"").toLowerCase(); for(const token of softLanguage){if(normalized.includes(token)) throw new Error(`legal_speech_lock:soft_language:${token}`);} return text;}

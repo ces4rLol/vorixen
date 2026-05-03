@@ -1,0 +1,1 @@
+Detectar dictamen de revisor fiscal, concepto jurídico, cargo jurídico, respuesta lista para presentar y estructura estándar.

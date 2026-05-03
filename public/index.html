@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>VORIXEN</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="app">
+    <section id="loginView" class="auth-view">
+      <div class="brand auth-brand">
+        <div class="seal">V</div>
+        <div>
+          <h1>VORIXEN</h1>
+          <p>IA jurídica privada</p>
+        </div>
+      </div>
+      <form id="loginForm" class="auth-form">
+        <label for="emailInput">Correo</label>
+        <input id="emailInput" name="email" type="email" autocomplete="email" required>
+        <label for="passwordInput">Contraseña</label>
+        <input id="passwordInput" name="password" type="password" autocomplete="current-password" required>
+        <button type="submit">Ingresar</button>
+        <p id="loginError" class="status error" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section id="chatView" class="workspace hidden">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="seal">V</div>
+          <div>
+            <h1>VORIXEN</h1>
+            <p id="userLabel">Sesión activa</p>
+          </div>
+        </div>
+        <nav class="nav">
+          <button id="chatTab" class="nav-button active" type="button">Chat</button>
+          <button id="adminTab" class="nav-button hidden" type="button">Usuarios</button>
+        </nav>
+        <button id="logoutButton" class="ghost-button" type="button">Cerrar sesión</button>
+      </aside>
+
+      <section id="chatPanel" class="panel">
+        <div id="messages" class="messages"></div>
+        <form id="chatForm" class="composer">
+          <input id="messageInput" placeholder="Escribe tu consulta jurídica..." autocomplete="off">
+          <button type="submit">Enviar</button>
+        </form>
+      </section>
+
+      <section id="adminPanel" class="panel hidden">
+        <header class="panel-header">
+          <h2>Usuarios</h2>
+          <button id="refreshUsersButton" class="ghost-button" type="button">Actualizar</button>
+        </header>
+        <form id="createUserForm" class="user-form">
+          <input id="newUserEmail" type="email" placeholder="correo@dominio.com" autocomplete="off" required>
+          <input id="newUserPassword" type="password" placeholder="Contraseña temporal" autocomplete="new-password" required>
+          <select id="newUserRole">
+            <option value="user">Usuario</option>
+            <option value="admin">Admin</option>
+          </select>
+          <button type="submit">Crear</button>
+        </form>
+        <p id="adminStatus" class="status" aria-live="polite"></p>
+        <div id="usersList" class="users-list"></div>
+      </section>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>

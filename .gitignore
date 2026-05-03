@@ -1,0 +1,9 @@
+node_modules/
+.env
+.env.*
+data/*.json
+data/*.sqlite
+data/*.sqlite-*
+logs/*.log
+TEST_LOG_*.txt
+SELF_AUDIT_*_OUTPUT.txt
