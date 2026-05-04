@@ -72,6 +72,7 @@ await okAsync("OpenAI client uses current completion token parameter",async()=>{
   assert.equal(result.ok,true);
   assert.equal(body.max_completion_tokens,777);
   assert.equal(Object.hasOwn(body,"max_tokens"),false);
+  assert.equal(Object.hasOwn(body,"temperature"),false);
   restore();
 });
 

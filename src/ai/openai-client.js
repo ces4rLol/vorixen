@@ -5,7 +5,7 @@ export function isOpenAIConfigured() {
   return Boolean(config.openaiApiKey && config.openaiApiKey.length > 20);
 }
 
-export async function callOpenAIChat({ messages, temperature = 0.1, maxTokens = 2400, fetchImpl = globalThis.fetch } = {}) {
+export async function callOpenAIChat({ messages, temperature = null, maxTokens = 2400, fetchImpl = globalThis.fetch } = {}) {
   if (!isOpenAIConfigured()) {
     markOpenAIFailure("openai_api_key_not_configured");
     return { ok: false, skipped: true, reason: "openai_api_key_not_configured" };
@@ -37,6 +37,12 @@ async function singleOpenAIChatAttempt({ messages, temperature, maxTokens, fetch
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), config.openaiTimeoutMs);
   try {
+    const body = {
+      model: config.openaiModel,
+      messages,
+      max_completion_tokens: maxTokens
+    };
+    if (temperature !== null && temperature !== undefined) body.temperature = temperature;
     const response = await fetchImpl("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       signal: controller.signal,
@@ -44,12 +50,7 @@ async function singleOpenAIChatAttempt({ messages, temperature, maxTokens, fetch
         "Authorization": `Bearer ${config.openaiApiKey}`,
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({
-        model: config.openaiModel,
-        messages,
-        temperature,
-        max_completion_tokens: maxTokens
-      })
+      body: JSON.stringify(body)
     });
     const data = await response.json().catch(() => ({}));
     if (!response.ok) return { ok: false, skipped: false, reason: "openai_http_error", status: response.status, data };
