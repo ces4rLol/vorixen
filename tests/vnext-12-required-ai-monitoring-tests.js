@@ -61,6 +61,20 @@ await okAsync("OpenAI client retries retryable failures and then succeeds",async
   restore();
 });
 
+await okAsync("OpenAI client uses current completion token parameter",async()=>{
+  Object.assign(config, previous, { openaiApiKey:"sk-test-abcdefghijklmnopqrstuvwxyz", openaiMaxRetries:0, openaiTimeoutMs:5000 });
+  let body=null;
+  const fetchImpl=async(_url,options)=>{
+    body=JSON.parse(options.body);
+    return { ok:true, status:200, json:async()=>({ choices:[{ message:{ content:"ok" }}], usage:{ total_tokens:1 } }) };
+  };
+  const result=await callOpenAIChat({ messages:[{role:"user",content:"x"}], maxTokens:777, fetchImpl });
+  assert.equal(result.ok,true);
+  assert.equal(body.max_completion_tokens,777);
+  assert.equal(Object.hasOwn(body,"max_tokens"),false);
+  restore();
+});
+
 ok("OpenAI metrics expose configured requireAI and model without secrets",()=>{
   Object.assign(config, previous, { requireAI:true, openaiApiKey:"sk-test-abcdefghijklmnopqrstuvwxyz", openaiModel:"gpt-test" });
   const metrics=getOpenAIMetrics();
@@ -84,4 +98,4 @@ await okAsync("OpenAI errors are written to configured log",async()=>{
   restore();
 });
 
-console.log(`PASS vnext-12-required-ai-monitoring-tests ${pass}/7`);
+console.log(`PASS vnext-12-required-ai-monitoring-tests ${pass}/8`);

@@ -48,7 +48,7 @@ async function singleOpenAIChatAttempt({ messages, temperature, maxTokens, fetch
         model: config.openaiModel,
         messages,
         temperature,
-        max_tokens: maxTokens
+        max_completion_tokens: maxTokens
       })
     });
     const data = await response.json().catch(() => ({}));
